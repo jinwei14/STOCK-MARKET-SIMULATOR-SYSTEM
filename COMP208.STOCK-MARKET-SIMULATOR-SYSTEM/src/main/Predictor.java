@@ -10,6 +10,25 @@ package main;
  * 
  * 
  * */
-public interface Predictor {
+public interface Predictor <E> {
+	/**
+	 * 
+	 * */
+	public void takeInStockData(Object o);
+	/**
+	 * @return
+	 * */
+	public E giveStockTrend();
+	/**
+	 * @return
+	 * */
+	public E getModel(E e);
+	
+	/**
+	 * 
+	 *  @return
+	 * */
+	public E verifivation();
+	
 
 }
