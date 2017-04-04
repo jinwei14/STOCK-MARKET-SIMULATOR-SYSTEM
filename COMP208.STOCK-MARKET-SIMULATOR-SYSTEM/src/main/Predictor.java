@@ -10,25 +10,27 @@ package main;
  * 
  * 
  * */
-public interface Predictor <E> {
+public interface Predictor {
 	/**
-	 * 
+	 * 这个接口我觉得没有必要，因为已经放在database类里面了，注释掉了	
 	 * */
-	public void takeInStockData(Object o);
+	//public void takeInStockData(Object o);
 	/**
-	 * @return
+	 * The stock code is needed for prediction.
+	 * @return the stock price prediction use Linear regression algorithm.
 	 * */
-	public E giveStockTrend();
+	public ArrayList<FLoat> getLinearPrediction(String stockCode);
 	/**
-	 * @return
+	 * The stockCode is needed for prediction
+	 * @return the stock price prediction use SVM algorithm
 	 * */
-	public E getModel(E e);
+	public ArrayList<Float> getSVMPrediction(String stockCode);
 	
 	/**
 	 * 
 	 *  @return
 	 * */
-	public E verifivation();
+	public ArrayList<Float> verifivation();
 	
 
 }
