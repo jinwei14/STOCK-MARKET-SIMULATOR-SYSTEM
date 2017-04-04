@@ -11,6 +11,6 @@ package main;
  * 
  * 
  * */
-public interface Crawler {
+public interface Crawler<E> {
    
 }

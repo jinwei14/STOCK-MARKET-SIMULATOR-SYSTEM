@@ -9,19 +9,20 @@ package main;
  * be shown by a line chart to the user. When the user wants to verify the
  * correctness of the prediction, he/she can compare the prediction curve with
  * the actual trend curve.
+ * @param <E>
  */
-public interface diagramGenerator {
+public interface diagramGenerator<E> {
 	/**
 	 * provid user a graphic chat of the stock information. help user understand
 	 * the rise and fall of stock in one day's trading
 	 */
-	public void drawGraph();
+	public E drawGraph(E e);
 
 	/**
 	 * user click the view stock button then a line chart of stock should be
 	 * provided so that the return type is Graph.
 	 */
-	public boolean requestGraph();
+	 boolean requestGraph();
 
 	/**
 	 * once user request for a stock information, the graphic generator should
@@ -34,6 +35,6 @@ public interface diagramGenerator {
 	*once generator request for stock data, database should 
 	*return the relative stock detail to the generator
 	*/
-	public void returnData();
+	public E returnData();
 
 }

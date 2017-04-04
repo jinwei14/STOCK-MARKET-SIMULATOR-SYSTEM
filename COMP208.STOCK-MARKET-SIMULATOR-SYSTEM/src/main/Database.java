@@ -10,32 +10,58 @@ package main;
  * Fourthly, all registered user will be stored in a User table
  * 
  * */
-public interface Database {
+public interface Database<E> {
 	/**
 	 * delete information
 	 * 
 	 * */
+	boolean deleteRecord(Object o);
 
-	public void deleteRecord();
-	
 	/**
-	 * change the record including stock information
-	 * personal information and user login information
+	 * change the record including stock information personal information and
+	 * user login information
 	 * */
-	
-	public void changeRecord();
-	
+
+	 boolean changeRecord(E e);
+
 	/**
 	 * add the record in the database
+	 * @return
+	 * */
+
+	boolean addRecord(E e);
+
+	/**
+	 * retrieve the data in the database sql Server
 	 * 
 	 * */
-	
-	public void addRecord();
+
+	public E retrieveRecord();
 	
 	/**
-	 * 
-	 * 
-	 * */
-	
-	public void retrieveRecord();
+     * Returns the number of record in this database.  
+     *
+     * @return the number of record in this database
+     */
+    int size();
+    /**
+     * Returns <tt>true</tt> if this database contains no record.
+     *
+     * @return <tt>true</tt> if this database contains no record
+     */
+    boolean isEmpty();
+    /**
+     * Returns <tt>true</tt> if this database contains the specified record.
+     * More formally, returns <tt>true</tt> if and only if this list contains
+     * at least one record <tt>e</tt> 
+     * @param o element whose presence in this list is to be tested
+     * @return <tt>true</tt> if this list contains the specified element
+     * @throws ClassCastException if the type of the specified record
+     *         is incompatible with this database
+     * @throws NullPointerException if the specified record is null and this
+     *         list does not permit null record
+     */
+    boolean contains(Object o);
+    
+    
 }
