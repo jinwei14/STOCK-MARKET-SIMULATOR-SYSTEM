@@ -19,7 +19,7 @@ public interface Predictor {
 	 * The stock code is needed for prediction.
 	 * @return the stock price prediction use Linear regression algorithm.
 	 * */
-	public ArrayList<FLoat> getLinearPrediction(String stockCode);
+	public ArrayList<Float> getLinearPrediction(String stockCode);
 	/**
 	 * The stockCode is needed for prediction
 	 * @return the stock price prediction use SVM algorithm
