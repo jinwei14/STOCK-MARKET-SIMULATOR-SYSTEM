@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 /**
  * The predictor will get a model after training historical data in the
  * database.
@@ -12,7 +14,7 @@ package main;
  * */
 public interface Predictor {
 	/**
-	 * 这个接口我觉得没有必要，因为已经放在database类里面了，注释掉了	
+	 * no need	
 	 * */
 	//public void takeInStockData(Object o);
 	/**
