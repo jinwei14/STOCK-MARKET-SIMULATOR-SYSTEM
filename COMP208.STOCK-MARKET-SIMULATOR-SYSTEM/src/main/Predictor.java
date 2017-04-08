@@ -1,4 +1,4 @@
-package main;
+package Main;
 
 import java.util.ArrayList;
 
@@ -13,20 +13,19 @@ import java.util.ArrayList;
  * 
  * */
 public interface Predictor {
+	
 	/**
-	 * no need	
-	 * */
-	//public void takeInStockData(Object o);
-	/**
-	 * The stock code is needed for prediction.
-	 * @return the stock price prediction use Linear regression algorithm.
-	 * */
-	public ArrayList<Float> getLinearPrediction(String stockCode);
+	 * 
+	 * @param stockCode
+	 * @param days
+	 * @return
+	 */
+	public ArrayList<Float[]> getLinearPrediction(String stockCode, int days);
 	/**
 	 * The stockCode is needed for prediction
 	 * @return the stock price prediction use SVM algorithm
 	 * */
-	public ArrayList<Float> getSVMPrediction(String stockCode);
+	public void getSVMPrediction(String stockCode, int days);
 	
 	/**
 	 * 
