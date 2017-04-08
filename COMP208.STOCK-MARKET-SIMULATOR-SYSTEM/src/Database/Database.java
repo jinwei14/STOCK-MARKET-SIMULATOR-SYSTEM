@@ -63,6 +63,22 @@ public class Database {
 		return sqlreturn;
 	}
 	
+	public List<Float[]> getStockHisPrice(String stockCode) throws SQLException {
+		String sql = "select high,low,open,close from " +stockCode;
+		Float[] prices = new Float[4];
+		List<Float[]> returnlist = new ArrayList<Float[]>();
+		pst = connect.prepareStatement(sql);
+		result = pst.executeQuery();
+		while(result.next()){
+			prices[0] = Float.valueOf(result.getString(1)); //1 represent high
+			prices[1] = Float.valueOf(result.getString(2)); //2 represent low
+			prices[2] = Float.valueOf(result.getString(3)); //3 represent open
+			prices[3] = Float.valueOf(result.getString(4)); //4 represent close
+			returnlist.add(prices);
+		}
+		return returnlist;
+	}
+	
 	public boolean tableExist(String tablename) throws SQLException{
 		result = connect.getMetaData().getTables(null, null, tablename, null);
 		if(result.next()){
