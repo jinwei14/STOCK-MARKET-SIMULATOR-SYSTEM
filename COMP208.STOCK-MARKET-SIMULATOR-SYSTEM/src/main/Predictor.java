@@ -1,4 +1,6 @@
-package main;
+package Main;
+
+import java.util.ArrayList;
 
 /**
  * The predictor will get a model after training historical data in the
@@ -11,20 +13,19 @@ package main;
  * 
  * */
 public interface Predictor {
+	
 	/**
-	 * 这个接口我觉得没有必要，因为已经放在database类里面了，注释掉了	
-	 * */
-	//public void takeInStockData(Object o);
-	/**
-	 * The stock code is needed for prediction.
-	 * @return the stock price prediction use Linear regression algorithm.
-	 * */
-	public ArrayList<FLoat> getLinearPrediction(String stockCode);
+	 * 
+	 * @param stockCode
+	 * @param days
+	 * @return
+	 */
+	public ArrayList<Float[]> getLinearPrediction(String stockCode, int days);
 	/**
 	 * The stockCode is needed for prediction
 	 * @return the stock price prediction use SVM algorithm
 	 * */
-	public ArrayList<Float> getSVMPrediction(String stockCode);
+	public void getSVMPrediction(String stockCode, int days);
 	
 	/**
 	 * 
