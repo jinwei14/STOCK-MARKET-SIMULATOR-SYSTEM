@@ -20,7 +20,7 @@ public interface Predictor {
 	 * @param days
 	 * @return
 	 */
-	public ArrayList<Float[]> getLinearPrediction(String stockCode, int days);
+	public boolean getLinearPrediction(String stockCode, int days);
 	/**
 	 * The stockCode is needed for prediction
 	 * @return the stock price prediction use SVM algorithm
