@@ -16,9 +16,5 @@ public class SVMPredictor {
 		@SuppressWarnings("unused")
 		Process p = r.exec(argv);
 	}
-	
-	public static void main(String args[]) throws IOException{
-		new SVMPredictor("MSFT").getSVMPrediction(4, 1);
-	}
 
 }

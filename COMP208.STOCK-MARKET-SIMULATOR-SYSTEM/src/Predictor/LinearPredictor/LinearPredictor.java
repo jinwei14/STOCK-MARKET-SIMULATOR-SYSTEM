@@ -1,5 +1,9 @@
 package Predictor.LinearPredictor;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +15,9 @@ public class LinearPredictor{
 	private double[] deviation;
 	private double[][] testData;
 	
-	private Database executor;
 	
 	public LinearPredictor(String stockCode) throws SQLException{
-		List<Float[]> prices = executor.getStockHisPrice(stockCode);
+		List<Float[]> prices = Database.getStockHisPrice(stockCode);
 		double[] high = new double[prices.size()];
 		double[] low = new double[prices.size()];
 		double[] open = new double[prices.size()];
@@ -35,7 +38,7 @@ public class LinearPredictor{
 		
 	}
 
-	public ArrayList<Float[]> getLinearPrediction(int days) {
+	public boolean getLinearPrediction(int days, int txtId) {
 		ArrayList<Float[]> stockPrediction = new ArrayList<Float[]>();
 		for(int i=0; i<deviation.length; i++){
 			Float[] uniquePre = new Float[days];
@@ -43,7 +46,30 @@ public class LinearPredictor{
 			stockPrediction.add(uniquePre);
 		}
 		
-		return stockPrediction;
+		File file = new File("PredText\\l"+txtId);
+		if(!file.exists()){
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
+			for(int i=0; i<stockPrediction.get(0).length; i++){
+				writer.write(String.valueOf(stockPrediction.get(0)[i])+"\t"+
+						String.valueOf(stockPrediction.get(1)[i])+"\t"+
+						String.valueOf(stockPrediction.get(2)[i])+"\t"+
+						String.valueOf(stockPrediction.get(3)[i])+"\n");
+			}
+			writer.flush();
+			writer.close();
+			
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
