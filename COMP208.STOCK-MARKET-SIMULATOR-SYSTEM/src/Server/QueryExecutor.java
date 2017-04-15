@@ -20,81 +20,48 @@ public class QueryExecutor{
 		password = decode(password);
 		String sql = "insert into User values ('"+userId+"','"+username+"','"+password+
 						"','0'"+discription+"')";
-		try {
-			Database.insert(sql);
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+		Database.insert(sql);
+		return true;
 	}
 	
 	public boolean changePersonalUsername(int user_id, String username) {
 		username = encode(username);
 		String sql = "update User set username="+username+" where user_id="+user_id;
-		try {
-			return Database.update(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+		return Database.update(sql);
 	}
 
 	public boolean changePersonalPassword(int user_id, String password) {
 		password = encode(password);
 		String sql = "update User set password="+password+" where user_id="+user_id;
-		try {
-			return Database.update(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+		return Database.update(sql);
 	}
 
 	public boolean changePersonalInformation(int user_id, String username, String password) {
 		username = encode(username);
 		password = decode(password);
 		String sql = "update User set username="+username+", password="+password+" where user_id="+user_id;
-		try {
-			return Database.update(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+		return Database.update(sql);
 	}
 
 	public boolean changePersonalStock(int user_id, int Stock_id, int share_num) {
 		String sql = "update User set share_num="+share_num+" where user_id="+user_id+
 				" and stock_id="+Stock_id;
-		try {
-			return Database.update(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+		return Database.update(sql);
 	}
 	
 	public List<String> viewPersonalInformation(int user_id) {
 		List<String> result = new ArrayList<String>();
 		String sql = "select * from User where user_id="+user_id;
-		try {
-			result = Database.queryPersonInfo(sql);
-			result.set(1, decode(result.get(1))); //decode username
-			result.set(2, decode(result.get(2))); //decode password
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		result = Database.queryPersonInfo(sql);
+		result.set(1, decode(result.get(1))); //decode username
+		result.set(2, decode(result.get(2))); //decode password
 		return result;
 	}
 	
 	public List<List<String>> viewPersonalStock(int user_id) {
 		List<List<String>> result = new ArrayList<List<String>>();
 		String sql = "select * from HoldStock where user_id="+user_id;
-		try {
-			result = Database.queryPersonStock(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		result = Database.queryPersonStock(sql);
 		return result;
 	}
 

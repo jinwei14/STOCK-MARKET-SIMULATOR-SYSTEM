@@ -6,20 +6,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import GraphGenerator.GraphGenerator;
 import Main.Predictor;
+import Main.diagramGenerator;
 import Main.queryProcessor;
 import Predictor.PreExecutor;
 
 @SuppressWarnings("serial")
-public class ServerImpl extends UnicastRemoteObject implements queryProcessor, Predictor{
+public class ServerImpl extends UnicastRemoteObject implements queryProcessor, Predictor, diagramGenerator{
 	
 	private QueryExecutor queryEx;
 	private PreExecutor predictEx;
+	private GraphGenerator graphEx;
 	
 	public ServerImpl() throws RemoteException {
 		super();
 		queryEx = new QueryExecutor();
 		predictEx = new PreExecutor();
+		graphEx = new GraphGenerator();
 	}
 
 	public boolean addPersonalInformation(String username, String password, String discription) {
@@ -83,9 +87,24 @@ public class ServerImpl extends UnicastRemoteObject implements queryProcessor, P
 		predictEx.getSVMPrediction(stockCode, days);
 	}
 
-	@Override
 	public ArrayList<Float> verifivation() {
 		return null;
+	}
+
+	public boolean drawHistGraph(String stockName) {
+		return graphEx.drawHistGraph(stockName);
+	}
+
+	public boolean drawVeriGraph(String stockName) {
+		return graphEx.drawVeriGraph(stockName);
+	}
+
+	public boolean drawDailyGraph(String stockName) {
+		return graphEx.drawDailyGraph(stockName);
+	}
+
+	public boolean drawPredGraph(String stockName) {
+		return graphEx.drawPredGraph(stockName);
 	}
 
 }
