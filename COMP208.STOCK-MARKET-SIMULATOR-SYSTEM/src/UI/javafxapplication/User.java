@@ -1,4 +1,6 @@
-package javafxapplication;
+package UI.javafxapplication;
+
+
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package main;
+package Main;
 
 /**
  * The database is used for storing the crawled data in a suitable form.

@@ -1,4 +1,5 @@
-package main;
+package Main;
+
 
 /**
  * The crawler is designed for web crawling stock data from the Internet by an
