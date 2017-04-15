@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #404040;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication.ProfileController">
+    <children>
+        <JFXListView fx:id="listView" layoutX="1.0" layoutY="-6.0" prefHeight="601.0" prefWidth="130.0" style="-fx-background-color: #404040;" />
+        <JFXButton alignment="BOTTOM_CENTER" layoutX="1.0" prefHeight="100.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-image: ;" styleClass="font" stylesheets="@font.css" text="Mine" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="499.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="969.0" AnchorPane.topAnchor="1.0">
+            <font>
+                <Font name="Tahoma" size="20.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" />
+            </padding>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <DropShadow height="0.0" offsetX="3.0" radius="14.5" width="60.0" />
+            </effect>
+        </JFXButton>
+        <JFXButton alignment="BOTTOM_CENTER" layoutY="100.0" prefHeight="100.0" prefWidth="131.0" styleClass="font" stylesheets="@font.css" text="Quotation" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Tahoma" size="20.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" />
+            </padding>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <DropShadow height="0.0" offsetX="3.0" radius="14.5" width="60.0" />
+            </effect>
+        </JFXButton>
+        <JFXButton alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutY="200.0" prefHeight="100.0" prefWidth="131.0" styleClass="font" stylesheets="@font.css" text="Trade" textFill="WHITE" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="969.0" AnchorPane.topAnchor="200.0">
+            <font>
+                <Font name="Tahoma" size="20.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" />
+            </padding>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <DropShadow height="0.0" offsetX="3.0" radius="14.5" width="60.0" />
+            </effect>
+        </JFXButton>
+        <JFXButton alignment="BOTTOM_CENTER" layoutY="300.0" prefHeight="100.0" prefWidth="131.0" stylesheets="@font.css" text="Predict" textFill="WHITE" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="969.0" AnchorPane.topAnchor="300.0">
+            <font>
+                <Font name="Tahoma" size="20.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" />
+            </padding>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <DropShadow height="0.0" offsetX="3.0" radius="14.5" width="60.0" />
+            </effect>
+        </JFXButton>
+        <JFXButton alignment="BOTTOM_CENTER" layoutY="400.0" prefHeight="100.0" prefWidth="131.0" stylesheets="@font.css" text="Top Up" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="969.0" AnchorPane.topAnchor="400.0">
+            <font>
+                <Font name="Tahoma" size="20.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" />
+            </padding>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <DropShadow height="0.0" offsetX="3.0" radius="14.5" width="60.0" />
+            </effect>
+        </JFXButton>
+        <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="45.0" layoutY="34.0">
+            <image>
+                <Image url="@../SystemImage/ren.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="46.0" layoutY="133.0" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="1014.0" AnchorPane.topAnchor="133.0">
+            <image>
+                <Image url="@../SystemImage/quotation.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="46.0" layoutY="333.0" AnchorPane.bottomAnchor="232.0" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="1014.0" AnchorPane.topAnchor="333.0">
+            <image>
+                <Image url="@../SystemImage/predict.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="43.0" layoutY="233.0">
+            <image>
+                <Image url="@../SystemImage/trade.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="35.0" fitWidth="40.0" layoutX="43.0" layoutY="429.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="1017.0" AnchorPane.topAnchor="429.0">
+            <image>
+                <Image url="@../SystemImage/top%20up.png" />
+            </image>
+        </ImageView>
+        <JFXButton alignment="BOTTOM_CENTER" layoutY="500.0" prefHeight="100.0" prefWidth="131.0" stylesheets="@font.css" text="News" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="969.0" AnchorPane.topAnchor="500.0">
+            <font>
+                <Font name="Tahoma" size="20.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" />
+            </padding>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <DropShadow height="0.0" offsetX="3.0" radius="14.5" width="60.0" />
+            </effect>
+        </JFXButton>
+        <ImageView layoutX="41.0" layoutY="513.0" AnchorPane.bottomAnchor="37.0" AnchorPane.rightAnchor="1009.0" AnchorPane.topAnchor="513.0">
+            <image>
+                <Image url="@../SystemImage/news.png" />
+            </image>
+        </ImageView>
+      <Pane layoutX="155.0" layoutY="17.0" prefHeight="264.0" prefWidth="227.0" style="-fx-background-color: #333333;">
+         <children>
+            <VBox fx:id="highestRise" prefHeight="264.0" prefWidth="227.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="230.0" style="-fx-background-color: #666666;" text="Highest Rises" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="15.5" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane layoutX="400.0" layoutY="16.0" prefHeight="354.0" prefWidth="679.0" style="-fx-background-color: #333333;">
+         <children>
+            <VBox prefHeight="354.0" prefWidth="679.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="701.0" style="-fx-background-color: #666666;" text="Stock Price Graph" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="15.5" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane layoutX="155.0" layoutY="302.0" prefHeight="282.0" prefWidth="227.0" style="-fx-background-color: #333333;">
+         <children>
+            <VBox prefHeight="282.0" prefWidth="227.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="230.0" style="-fx-background-color: #666666;" text="Lowest Rises" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="15.5" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane layoutX="400.0" layoutY="387.0" prefHeight="197.0" prefWidth="679.0" style="-fx-background-color: #333333;">
+         <children>
+            <VBox layoutY="-1.0" prefHeight="200.0" prefWidth="679.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="710.0" style="-fx-background-color: #666666;" text="Stock Details" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="15.5" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+       
+ 
+    </children>
+</AnchorPane>
