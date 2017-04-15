@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import Database.Database;
+import Server.ErrorExecutor;
 
 public class DailyCrawler implements Runnable {
 
@@ -20,27 +21,27 @@ public class DailyCrawler implements Runnable {
 	private List<String> nameList;
 	private String parameter = "&f=sd1l1yr";
 	
-	private Database executor;
-	
 	public DailyCrawler() throws SQLException{
+		
+		Database.startDatabase();
+		
 		nameList = new ArrayList<String>();
-		executor = new Database();
 		getNameList();
 		run();
 	}
 	
-	private void getNameList() throws SQLException {
-		nameList = executor.getStockCode();
+	private void getNameList() {
+		nameList = Database.getStockCode();
 	}
 
 	public void run() {
 		while(true){
 			for(int i=0;i<nameList.size();i ++){
 				try {
-					if(executor.tableExist(nameList.get(i)+"Daily")){
+					if(Database.tableExist(nameList.get(i)+"Daily")){
 						crawlDailyStock(nameList.get(i));
 					}else{
-						executor.createTable("create table "+nameList.get(i)+"Daily ("
+						Database.createTable("create table "+nameList.get(i)+"Daily ("
 								+ "dailyDate char(25) not null primary key,"
 								+ "stockId char(15),"
 								+ "lastTradePrice float,"
@@ -48,13 +49,13 @@ public class DailyCrawler implements Runnable {
 								+ "perRatio float);");
 					}
 				} catch (SQLException e) {
-					e.printStackTrace();
+					ErrorExecutor.writeError(e.getMessage());
 				}
 			}
 			try {
 				Thread.sleep(1000*60*5);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				ErrorExecutor.writeError(e.getMessage());
 			}
 		}
 		
@@ -101,14 +102,14 @@ public class DailyCrawler implements Runnable {
 			list.add(sd);
 			
 		}catch(Exception e1){
-			e1.printStackTrace();
+			ErrorExecutor.writeError(e1.getMessage());
 			return;
 		}finally{
 			if(in!=null){
 				try{
 					in.close();
 				}catch(IOException e2){
-					e2.printStackTrace();
+					ErrorExecutor.writeError(e2.getMessage());
 				}
 			}
 		}
@@ -118,7 +119,7 @@ public class DailyCrawler implements Runnable {
 						list.get(i).getCode()+"','"+list.get(i).getLastPrice()+"','"+
 						list.get(i).getDivident()+"','"+list.get(i).getPE()+"')";
 			System.out.println(sql);
-			executor.insert(sql);
+			Database.insert(sql);
 		}
 	}
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Database.Database;
+import Server.ErrorExecutor;
 
 public class HistoricalCrawler implements Runnable {
 	
@@ -17,41 +18,34 @@ public class HistoricalCrawler implements Runnable {
 
 	private List<String> nameList;
 	
-	private Database executor;
-	
 	public HistoricalCrawler() throws SQLException{
 		nameList = new ArrayList<String>();
-		executor = new Database();
 		getNameList();
 		run();
 	}
 	
 	private void getNameList() throws SQLException{
-		nameList = executor.getStockCode();
+		nameList = Database.getStockCode();
 	}
 	
 	public void run() {
 		for(int i=0;i<nameList.size();i ++){
-			try {
-				if(executor.tableExist(nameList.get(i))){
-					continue;
-				}else{
-					executor.createTable("create table "+nameList.get(i)+" ("
-							+ "stockDate char(15) not null primary key,"
-							+ "high float,"
-							+ "low float,"
-							+ "open float,"
-							+ "close float,"
-							+ "volume float);");
-					crawlStock(nameList.get(i), "2008-01-01", "2017-04-01");
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if(Database.tableExist(nameList.get(i))){
+				continue;
+			}else{
+				Database.createTable("create table "+nameList.get(i)+" ("
+						+ "stockDate char(15) not null primary key,"
+						+ "high float,"
+						+ "low float,"
+						+ "open float,"
+						+ "close float,"
+						+ "volume float);");
+				crawlStock(nameList.get(i), "2008-01-01", "2017-04-01");
 			}
 		}
 	}
 
-	private void crawlStock(String stockName, String fromDate, String toDate) throws SQLException {
+	private void crawlStock(String stockName, String fromDate, String toDate) {
 		
 		ArrayList<StockData> list = new ArrayList<StockData>();
 		String[] datefrominfo = fromDate.split("-");
@@ -96,14 +90,14 @@ public class HistoricalCrawler implements Runnable {
 				list.add(sd);
 			}
 		}catch(Exception e1){
-			e1.printStackTrace();
+			ErrorExecutor.writeError(e1.getMessage());
 			return;
 		}finally{
 			if(in!=null){
 				try{
 					in.close();
 				}catch(IOException e2){
-					e2.printStackTrace();
+					ErrorExecutor.writeError(e2.getMessage());
 				}
 			}
 		}
@@ -113,7 +107,7 @@ public class HistoricalCrawler implements Runnable {
 						"','"+list.get(i).getHigh()+"','"+list.get(i).getLow()+"','"+
 						list.get(i).getOpen()+"','"+list.get(i).getClose()+"','"+
 						list.get(i).getVolume()+"')";
-			executor.insert(sql);
+			Database.insert(sql);
 		}
 	}
 
