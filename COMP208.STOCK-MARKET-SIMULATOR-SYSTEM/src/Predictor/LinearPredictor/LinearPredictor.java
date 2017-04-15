@@ -4,11 +4,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import Database.Database;
+import Server.ErrorExecutor;
 
 public class LinearPredictor{
 	
@@ -16,8 +16,9 @@ public class LinearPredictor{
 	private double[][] testData;
 	
 	
-	public LinearPredictor(String stockCode) throws SQLException{
-		List<Float[]> prices = Database.getStockHisPrice(stockCode);
+	public LinearPredictor(String stockCode){
+		List<Float[]> prices;
+		prices = Database.getStockHisPrice(stockCode);
 		double[] high = new double[prices.size()];
 		double[] low = new double[prices.size()];
 		double[] open = new double[prices.size()];
@@ -35,7 +36,6 @@ public class LinearPredictor{
 		testData[3] = close;
 
 		deviation = new LinearDeviation(testData).getDeviation();
-		
 	}
 
 	public boolean getLinearPrediction(int days, int txtId) {
@@ -51,7 +51,7 @@ public class LinearPredictor{
 			try {
 				file.createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
+				ErrorExecutor.writeError(e.getMessage());
 			}
 		}
 		try {
@@ -67,7 +67,7 @@ public class LinearPredictor{
 			
 			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			ErrorExecutor.writeError(e.getMessage());
 			return false;
 		}
 	}

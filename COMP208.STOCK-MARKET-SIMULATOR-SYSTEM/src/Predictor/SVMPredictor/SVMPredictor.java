@@ -2,6 +2,8 @@ package Predictor.SVMPredictor;
 
 import java.io.IOException;
 
+import Server.ErrorExecutor;
+
 public class SVMPredictor {
 	
 	private String stockCode;
@@ -10,11 +12,15 @@ public class SVMPredictor {
 		this.stockCode = stockCode;
 	}
 	
-	public void getSVMPrediction(int days, int txtId) throws IOException{
+	public void getSVMPrediction(int days, int txtId) {
 		Runtime r = Runtime.getRuntime();
 		String argv[] = {"cmd", "/c", "python", "SVMPredictor.py",String.valueOf(days), String.valueOf(txtId), stockCode};
-		@SuppressWarnings("unused")
-		Process p = r.exec(argv);
+		try {
+			@SuppressWarnings("unused")
+			Process p = r.exec(argv);
+		} catch (IOException e) {
+			ErrorExecutor.writeError(e.getMessage());
+		}
 	}
 
 }
