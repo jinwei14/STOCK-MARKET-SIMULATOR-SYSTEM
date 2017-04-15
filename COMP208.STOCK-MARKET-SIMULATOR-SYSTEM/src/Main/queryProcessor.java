@@ -46,7 +46,7 @@ public interface queryProcessor {
 
 	/**
 	 * if user delete some personal information like data of birth. The related
-	 * table in database should also change.
+	 * table inv database should also change.
 	 * 
 	 * @return
 	 */
