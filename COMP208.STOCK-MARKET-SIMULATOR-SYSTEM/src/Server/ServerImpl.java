@@ -1,33 +1,25 @@
 package Server;
 
+import java.awt.image.BufferedImage;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import GraphGenerator.GraphGenerator;
-import Main.Predictor;
-import Main.diagramGenerator;
-import Main.queryProcessor;
-import Predictor.PreExecutor;
+import api.queryProcessor;
 
 @SuppressWarnings("serial")
-public class ServerImpl extends UnicastRemoteObject implements queryProcessor, Predictor, diagramGenerator{
+public class ServerImpl extends UnicastRemoteObject implements queryProcessor{
 	
 	private QueryExecutor queryEx;
-	private PreExecutor predictEx;
-	private GraphGenerator graphEx;
 	
 	public ServerImpl() throws RemoteException {
 		super();
 		queryEx = new QueryExecutor();
-		predictEx = new PreExecutor();
-		graphEx = new GraphGenerator();
 	}
 
-	public boolean addPersonalInformation(String username, String password, String discription) {
-		return queryEx.addPersonalInformation(username, password, discription);
+	public int addPersonalInformation(String username, String password, String phone, String bankcard, String postcode) {
+		return queryEx.addPersonalInformation(username, password, phone, bankcard, postcode);
 	}
 
 	public boolean changePersonalUsername(int user_id, String username) {
@@ -58,53 +50,59 @@ public class ServerImpl extends UnicastRemoteObject implements queryProcessor, P
 		return false;
 	}
 	
+	public List<List<String>> getPeOrder(int order) {
+		return queryEx.getPeOrder(order);
+	}
+	
+	public List<String> getStockAllInfo(String stock_id) {
+		return queryEx.getStockAllInfo(stock_id);
+	}
+	
 	@Override
-	public boolean buyStock(int user_id, String stock_id, int share_num, float price) {
+	public boolean buyStock(int user_id, String stock_id, int share_num) {
 		try {
-			return queryEx.buyStock(user_id, stock_id, share_num, price);
+			return queryEx.buyStock(user_id, stock_id, share_num);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			ErrorExecutor.writeError(e.getMessage());
 			return false;
 		}
 	}
 
-	@Override
-	public double sellStock(int user_id, String stock_id, int share_num, float price) {
+	/**
+	 * user wants to sell the chosen stock
+	 * @param user_id the user id
+	 * @param stock_id the chosen stock
+	 * @param share_num how many does the user want to sell
+	 * @return the number of money that the user earned. -1-->exceed upbound -2-->sqlexception
+	 * @throws SQLException
+	 */
+	public double sellStock(int user_id, String stock_id, int share_num) {
 		try {
-			return queryEx.sellStock(user_id, stock_id, share_num, price);
+			return queryEx.sellStock(user_id, stock_id, share_num);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			ErrorExecutor.writeError(e.getMessage());
 			return -2;
 		}
 	}
-
-
-	public boolean getLinearPrediction(String stockCode, int days) {
-		return predictEx.getLinearPrediction(stockCode, days);
+	
+	public boolean topup(int user_id, double money) {
+		return queryEx.topup(user_id, money);
 	}
 
-	public void getSVMPrediction(String stockCode, int days) {
-		predictEx.getSVMPrediction(stockCode, days);
+	public BufferedImage getStockHisChart(String stock_id) {
+		return queryEx.getStockHisChart(stock_id);
 	}
 
-	public ArrayList<Float> verifivation() {
-		return null;
+	public BufferedImage[] getPredictChart(String stock_id, int days) {
+		return queryEx.getPredictChart(stock_id, days);
 	}
 
-	public boolean drawHistGraph(String stockName) {
-		return graphEx.drawHistGraph(stockName);
+	public BufferedImage getVeriChart(String stock_id) {
+		return queryEx.getVeriChart(stock_id);
 	}
 
-	public boolean drawVeriGraph(String stockName) {
-		return graphEx.drawVeriGraph(stockName);
-	}
-
-	public boolean drawDailyGraph(String stockName) {
-		return graphEx.drawDailyGraph(stockName);
-	}
-
-	public boolean drawPredGraph(String stockName) {
-		return graphEx.drawPredGraph(stockName);
+	public BufferedImage getDailyChart(String stock_id) {
+		return queryEx.getDaiylChart(stock_id);
 	}
 
 }
