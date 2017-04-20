@@ -46,7 +46,7 @@ public class DailyCrawler implements Runnable {
 								+ "stockId char(15),"
 								+ "lastTradePrice float,"
 								+ "dividentYeild float,"
-								+ "perRatio float);");
+								+ "peRatio float);");
 					}
 				} catch (SQLException e) {
 					ErrorExecutor.writeError(e.getMessage());
@@ -120,6 +120,9 @@ public class DailyCrawler implements Runnable {
 						list.get(i).getDivident()+"','"+list.get(i).getPE()+"')";
 			System.out.println(sql);
 			Database.insert(sql);
+			
+			String sql2 = "update stock set pe="+list.get(i).getPE();
+			Database.update(sql2);
 		}
 	}
 

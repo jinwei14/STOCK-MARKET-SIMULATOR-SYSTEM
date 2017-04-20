@@ -142,7 +142,7 @@ public class Database {
 		try {
 			pst = connect.prepareStatement(sql);
 			result = pst.executeQuery(sql);
-			for(int i=1; i<=5; i++){
+			for(int i=1; i<=7; i++){
 				sqlreturn.add(result.getString(i));
 			}
 		} catch (SQLException e) {
@@ -171,6 +171,55 @@ public class Database {
 		return sqlreturn;
 	}
 	
+	public static List<List<String>> getPEOrder(String sql){
+		List<List<String>> peorder = new ArrayList<List<String>>();
+		try{
+			pst = connect.prepareStatement(sql);
+			result = pst.executeQuery();
+			while(result.next()){
+				List<String> stock = new ArrayList<String>();
+				stock.add(result.getString(1));
+				stock.add(result.getString(2));
+				peorder.add(stock);
+			}
+		} catch (SQLException e){
+			ErrorExecutor.writeError(e.getMessage());
+		}
+		return peorder;  
+	}
+	
+	/**
+	 * get all information of the chosen stock
+	 * @param stock_id the chosen stock
+	 * @return stock_id stock_name dailyDate stock_id lastTradePrice dividentYeild pe
+	 */
+	public static List<String> getStockAllInfo(String stock_id){
+		List<String> stock_info = new ArrayList<String>();
+		String sql1 = "select * from stock where stock_id="+stock_id;
+		String sql2 = "select * from "+stock_id+"Daily order by dailyDate desc limit 1";
+		try{
+			pst = connect.prepareStatement(sql1);
+			result = pst.executeQuery();
+			while(result.next()){
+				stock_info.add(result.getString(1));
+				stock_info.add(result.getString(2));
+			}
+			
+			pst = connect.prepareStatement(sql2);
+			result = pst.executeQuery();
+			while(result.next()){
+				stock_info.add(result.getString(1));
+				stock_info.add(result.getString(2));
+				stock_info.add(result.getString(3));
+				stock_info.add(result.getString(4));
+				stock_info.add(result.getString(5));
+			}
+		} catch (SQLException e){
+			ErrorExecutor.writeError(e.getMessage());
+		}
+		return null;
+	}
+ 	
 	/**
 	 * get the list of the stock code which are stored in the database
 	 * @return
