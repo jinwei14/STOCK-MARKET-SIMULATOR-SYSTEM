@@ -1,5 +1,7 @@
 package GraphGenerator;
 
+import Server.ErrorExecutor;
+
 /**
  * @author sgjgong3
  *
@@ -18,10 +20,10 @@ public class GraphGenerator {
 	 *            the name of the stock.
 	 * @return true, if the graph is drawn; false, if some error happened.
 	 */
-	public boolean drawHistGraph(String stockName) {
+	public String drawHistGraph(String stockName) {
 		graphType = "hist"; // Set the type of the graph
-
-		return runPython(stockName, graphType);
+		runPython(stockName, graphType);
+		return stockName+".png";
 	}
 
 	
@@ -32,10 +34,10 @@ public class GraphGenerator {
 	 *            the name of the stock.
 	 * @return true, if the graph is drawn; false, if some error happened.
 	 */
-	public boolean drawVeriGraph(String stockName) {
+	public String drawVeriGraph(String stockName) {
 		graphType = "veri";
-
-		return runPython(stockName, graphType);
+		runPython(stockName, graphType);
+		return stockName+"Veri.png";
 	}
 
 	
@@ -46,10 +48,10 @@ public class GraphGenerator {
 	 *            the name of the stock.
 	 * @return true, if the graph is drawn; false, if some error happened.
 	 */
-	public boolean drawDailyGraph(String stockName) {
+	public String drawDailyGraph(String stockName) {
 		graphType = "daily"; // Set the type of the graph
-
-		return runPython(stockName, graphType);
+		runPython(stockName, graphType);
+		return stockName+"Daily.png";
 	}
 
 	
@@ -60,10 +62,10 @@ public class GraphGenerator {
 	 *            the name of the stock.
 	 * @return true, if the graph is drawn; false, if some error happened.
 	 */
-	public boolean drawPredGraph(String stockName) {
+	public String drawPredGraph(String stockName) {
 		graphType = "pred"; // Set the type of the graph
-
-		return runPython(stockName, graphType);
+		runPython(stockName, graphType);
+		return stockName+"Pred.png";
 	}
 
 	
@@ -81,11 +83,12 @@ public class GraphGenerator {
 		try {
 			// Run the Python file to draw the history graph
 			r = Runtime.getRuntime();
-			String argv[] = { "cmd", "/c", "python", PYTHON_FILE, stock, graphType };
+			String argv[] = { "cmd", "/c", "python", PYTHON_FILE, stock, graph };
 			r.exec(argv);
 			graphDrawn = true;
 		} catch (Exception e) {
 			graphDrawn = false;
+			ErrorExecutor.writeError(e.getMessage());
 		}
 
 		return graphDrawn;
