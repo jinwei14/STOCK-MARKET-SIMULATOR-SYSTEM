@@ -3,7 +3,7 @@ this is the group project COMP208, it is a SIMULATOR SYSTEM which will predict s
 
 Collaborators: jin.zhang jinwei.zhang linhui.lu jinzhi.gong qihao.feng.
 
-Overall Mark 77+ Number 1 in University Of Liverpool Computer Science Department.
+Overall Mark 77+ in University Of Liverpool Computer Science Department.
 
 screenshot below
 --------------------------------------------------------------------------------------------------
