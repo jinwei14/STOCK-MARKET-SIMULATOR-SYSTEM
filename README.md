@@ -3,8 +3,15 @@ this is the group project COMP208, it is a SIMULATOR SYSTEM which will predict s
 
 Collaborators: jin.zhang jinwei.zhang linhui.lu jinzhi.gong qihao.feng.
 
-Overall Mark 77+ in University Of Liverpool Computer Science Department.
+This system has combined two machine learning algorithm (SVM and LR) to analyse the stock data and make predictions.
+Moreover this system provide dynamic online trading and prediction varification (proviiding prediction accurate rate). 
 
+Encrypation: java BASE 64
+Front-end: javaFx(GUI) python (stock visualisation)
+Back-End: mySQL
+
+
+Overall Mark 77+ in University Of Liverpool Computer Science Department.
 screenshot below
 --------------------------------------------------------------------------------------------------
 
