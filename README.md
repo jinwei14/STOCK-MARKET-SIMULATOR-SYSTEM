@@ -7,7 +7,9 @@ This system has combined two machine learning algorithm (SVM and LR) to analyse 
 Moreover this system provide dynamic online trading and prediction varification (proviiding prediction accurate rate). 
 
 Encrypation: java BASE 64
+
 Front-end: javaFx(GUI) python (stock visualisation)
+
 Back-End: mySQL
 
 
