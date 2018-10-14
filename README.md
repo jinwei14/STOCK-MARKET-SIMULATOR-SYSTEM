@@ -3,7 +3,7 @@ this is the group project COMP208, it is a SIMULATOR SYSTEM which will predict s
 
 Collaborators: jin.zhang jinwei.zhang linhui.lu jinzhi.gong qihao.feng.
 
-time spent on coding：2 weeks
+time spent on coding：4 weeks
 
 This system has combined two machine learning algorithm (SVM and LR) to analyse the stock data and make predictions.
 Moreover this system provide dynamic online trading and prediction varification (proviiding prediction accurate rate). 
